@@ -1,13 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Virtue | LEAVE OF ABSENCE</title>
 
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Virtue | LEAVE OF ABSENCE</title>
     <link rel="shortcut icon" href="../media/VH_new.png" type="image/x-icon">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .form-container {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #444;
+        }
+
+        input,
+        textarea,
+        button {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1.25rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        button {
+            background-color: #4b6cb7;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            border: none;
+        }
+
+        button:hover {
+            background-color: #3b5998;
+        }
+
+        @media (max-width: 600px) {
+            .form-container {
+                padding: 1.5rem;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    Test
+
+    <div class="form-container">
+        <h2>Leave of Absence Form</h2>
+        <form id="leaveForm">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" required />
+
+            <label for="leave-date">Date of Leave</label>
+            <input type="date" id="leave-date" name="leave-date" required />
+
+            <label for="return-date">Date of Return</label>
+            <input type="date" id="return-date" name="return-date" required />
+
+            <label for="reason">Reason for Leave</label>
+            <textarea id="reason" name="reason" required></textarea>
+
+            <button type="submit">Submit Request</button>
+        </form>
+
+        <p id="response" style="color: green;"></p>
+    </div>
+
+    <script>
+        document.getElementById("leaveForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const username = document.getElementById("name").value;
+            const DoL = document.getElementById("leave-date").value;
+            const DoR = document.getElementById("return-date").value;
+            const reason = document.getElementById("reason").value;
+
+            // Replace with your actual Discord webhook URL
+            const webhookURL = "https://discord.com/api/webhooks/1394512933261807718/pqHYGWT7qeexYTA4rgVxfdx-nwZXWP5Qe470WcLOm_OSrV5IIWFHUWwPBw3bq4v9YtXm";
+
+            const payload = {
+                content: '@everyone',
+                embeds: [
+                    {
+                        title: "Leave of Absence Request",
+                        description: "Test LoA request by " + username,
+                        color: 2326507,
+                        fields: [
+                            {
+                                name: "Requester",
+                                value: "> " + username
+                            },
+                            {
+                                name: "From Date",
+                                value: "> " + DoL,
+                                inline: true
+                            },
+                            {
+                                name: "To Date",
+                                value: "> " + DoR,
+                                inline: true
+                            },
+                            {
+                                name: "Reason",
+                                value: "> " + reason,
+                                inline: false
+                            },
+                        ]
+                    },
+                ]
+            };
+
+            fetch(webhookURL, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(payload)
+            })
+                .then(res => {
+                    if (res.ok) {
+                        document.getElementById("response").textContent = "✅ Message sent to Discord!";
+                    } else {
+                        document.getElementById("response").textContent = "❌ Failed to send message.";
+                    }
+                })
+                .catch(err => {
+                    console.error(err);
+                    document.getElementById("response").textContent = "❌ Error occurred.";
+                });
+        });
+    </script>
+
 </body>
+
 </html>
