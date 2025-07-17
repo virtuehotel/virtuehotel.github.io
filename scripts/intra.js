@@ -52,27 +52,29 @@ if (code) {
     console.warn('No authorization code found in URL');
 }
 
-// Check for user data on page load
-document.addEventListener('DOMContentLoaded', function () {
-    const userData = JSON.parse(localStorage.getItem('discordUserData'));
+// Check for user data on page load only if not in login.html
+if (window.location.pathname !== '/login.html') {
+    document.addEventListener('DOMContentLoaded', function () {
+        const userData = JSON.parse(localStorage.getItem('discordUserData'));
 
-    if (userData) {
-        const usernameElement = document.querySelector('.greetingMsg');
-        const avatarElement = document.querySelector('.userProfile');
+        if (userData) {
+            const usernameElement = document.querySelector('.greetingMsg');
+            const avatarElement = document.querySelector('.userProfile');
 
-        usernameElement.textContent = "Welcome, " + userData.username;
-        avatarElement.src = `https://cdn.discordapp.com/avatars/${userData.id}/${userData.avatar}.png`;
+            usernameElement.textContent = "Welcome, " + userData.username;
+            avatarElement.src = `https://cdn.discordapp.com/avatars/${userData.id}/${userData.avatar}.png`;
 
-        // Remove the code parameter from the URL
-        const urlParams = new URLSearchParams(window.location.search);
-        urlParams.delete('code');
-        const newUrl = `${window.location.pathname}${urlParams.toString() ? `?${urlParams.toString()}` : ''}`;
+            // Remove the code parameter from the URL
+            const urlParams = new URLSearchParams(window.location.search);
+            urlParams.delete('code');
+            const newUrl = `${window.location.pathname}${urlParams.toString() ? `?${urlParams.toString()}` : ''}`;
 
-        // Update the URL without the code parameter
-        history.replaceState({}, document.title, newUrl);
-    } else {
-        // If user data is not available, redirect to sign-in page
-        console.warn('User data not found, redirecting to login.');
-        window.location.href = './login.html';
-    }
-});
+            // Update the URL without the code parameter
+            history.replaceState({}, document.title, newUrl);
+        } else {
+            // If user data is not available, redirect to sign-in page
+            console.warn('User data not found, redirecting to login.');
+            // window.location.href = './login.html';
+        }
+    });
+}
