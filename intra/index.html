@@ -13,11 +13,9 @@
     <img src="" class="userProfile" alt="">
     <a href="loa.html">Leave of Absence</a>
 
-    <script>
-        function saveUserDataToLocalStorage(userData) {
-            localStorage.setItem('discordUserData', JSON.stringify(userData));
-        }
+    <script src="../scripts/intra.js"></script>
 
+    <script>
         document.addEventListener('DOMContentLoaded', function () {
             const userData = JSON.parse(localStorage.getItem('discordUserData'));
 
