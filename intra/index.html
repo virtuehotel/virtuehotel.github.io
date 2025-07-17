@@ -14,6 +14,10 @@
     <a href="loa.html">Leave of Absence</a>
 
     <script>
+        function saveUserDataToLocalStorage(userData) {
+            localStorage.setItem('discordUserData', JSON.stringify(userData));
+        }
+
         document.addEventListener('DOMContentLoaded', function () {
             const userData = JSON.parse(localStorage.getItem('discordUserData'));
 
@@ -21,7 +25,7 @@
                 const usernameElement = document.querySelector('.greetingMsg');
                 const avatarElement = document.querySelector('.userProfile');
 
-                usernameElement.textContent = "Welcome, "+ userData.username;
+                usernameElement.textContent = "Welcome, " + userData.username;
                 avatarElement.src = `https://cdn.discordapp.com/avatars/${userData.id}/${userData.avatar}.png`;
 
                 // Remove the code parameter from the URL
