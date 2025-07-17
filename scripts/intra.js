@@ -52,7 +52,7 @@ function handleOAuth() {
                 }
 
                 // Fetch the staff list JSON from your GitHub Pages
-                return fetch('staff-list.json')
+                return fetch('whitelist.json')
                     .then(res => {
                         if (!res.ok) {
                             throw new Error('Failed to fetch staff list: ' + res.statusText);
