@@ -104,6 +104,10 @@
     </div>
 
     <script>
+
+        const userData = JSON.parse(localStorage.getItem('discordUserData'));
+        document.getElementById("name").value = userData.username
+
         document.getElementById("leaveForm").addEventListener("submit", function (e) {
             e.preventDefault();
 
