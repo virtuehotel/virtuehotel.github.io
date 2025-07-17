@@ -65,7 +65,7 @@ function handleOAuth() {
         .then(isWhitelisted => {
             if (isWhitelisted) {
                 alert('Access granted!');
-                window.location.href = 'index2.html';
+                window.location.href = 'index.html';
             } else {
                 alert('You are NOT on the whitelist.');
                 window.location.href = 'login.html';
