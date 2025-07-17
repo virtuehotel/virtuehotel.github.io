@@ -62,10 +62,10 @@ function handleOAuth() {
                             if (ids.includes(userId)) {
                                 // User is allowed
                                 alert('Access granted!');
-                                // window.location.href = 'your-dashboard.html';
+                                window.location.href = 'index2.html';
                             } else {
                                 alert('You are NOT on the whitelist.');
-                                // window.location.href = 'access-denied.html';
+                                window.location.href = 'login.html';
                             }
                         })
                         .catch(err => alert('Could not load whitelist.'));
