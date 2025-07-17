@@ -71,7 +71,7 @@ function handleOAuth() {
                         } else {
                             // Redirect to an access denied page or show a message
                             alert('You do not have access to this intranet system.');
-                            // window.location.href = 'access-denied.html'; // Update this to your access denied page
+                            window.location.href = 'index2.html'; // Update this to your access denied page
                         }
                     });
             })
