@@ -43,7 +43,7 @@ if (code) {
             // Save user data to localStorage
             saveUserDataToLocalStorage(userData);
             // Redirect to dashboard
-            window.location.href = 'dashboard.html'; // Redirect to dashboard after successful login
+            window.location.href = 'index.html'; // Redirect to dashboard after successful login
         })
         .catch(error => console.error('Error fetching user data:', error));
     })
