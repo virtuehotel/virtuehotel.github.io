@@ -58,11 +58,13 @@ if (window.location.pathname !== '/login.html') {
         const userData = JSON.parse(localStorage.getItem('discordUserData'));
 
         if (userData) {
-            const usernameElement = document.querySelector('.greetingMsg');
-            const avatarElement = document.querySelector('.userProfile');
+            // const usernameElement = document.querySelector('.greetingMsg');
+            // const avatarElement = document.querySelector('.userProfile');
 
-            usernameElement.textContent = "Welcome, " + userData.username;
-            avatarElement.src = `https://cdn.discordapp.com/avatars/${userData.id}/${userData.avatar}.png`;
+            // usernameElement.textContent = "Welcome, " + userData.username;
+            // avatarElement.src = `https://cdn.discordapp.com/avatars/${userData.id}/${userData.avatar}.png`;
+
+            console.log(userData);
 
             // Remove the code parameter from the URL
             const urlParams = new URLSearchParams(window.location.search);
