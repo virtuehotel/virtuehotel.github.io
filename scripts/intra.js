@@ -52,7 +52,7 @@ function handleOAuth() {
                     window.history.replaceState({}, document.title, url.pathname + url.hash);
                 }
 
-                function fetchWhitelistAndCheck(userId) {
+            //    function fetchWhitelistAndCheck(userId) {
                     fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vT1nzgo9w6QqWX-ZYyv0jqrahG8BjE4HvOChQFPbl8c1_lOkJJW6KsVsAMdFvT-4PxVkMK7CuFXGeCi/pub?gid=0&single=true&output=csv')
                         .then(response => response.text())
                         .then(csv => {
@@ -69,7 +69,7 @@ function handleOAuth() {
                             }
                         })
                         .catch(err => alert('Could not load whitelist.'));
-                }
+            //    }
             })
             .catch(error => console.error('Error during OAuth flow:', error));
     } else {
