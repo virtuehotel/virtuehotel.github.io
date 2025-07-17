@@ -52,28 +52,24 @@ function handleOAuth() {
                     window.history.replaceState({}, document.title, url.pathname + url.hash);
                 }
 
-                // Fetch the staff list JSON from your GitHub Pages
-                return fetch('whitelist.json')
-                    .then(res => {
-                        if (!res.ok) {
-                            throw new Error('Failed to fetch staff list: ' + res.statusText);
-                        }
-                        return res.json();
-                    })
-                    .then(staffList => {
-                        // Check if the user is on the allowed list
-                        const allowedUserIds = staffList.allowedUserIds || [];
-                        const hasAccess = allowedUserIds.includes(userData.id);
-
-                        if (hasAccess) {
-                            // Redirect to intranet/dashboard if the user has access
-                            window.location.href = 'index.html'; // Update this to your dashboard URL
-                        } else {
-                            // Redirect to an access denied page or show a message
-                            alert('You do not have access to this intranet system.');
-                            window.location.href = 'index2.html'; // Update this to your access denied page
-                        }
-                    });
+                function fetchWhitelistAndCheck(userId) {
+                    fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vT1nzgo9w6QqWX-ZYyv0jqrahG8BjE4HvOChQFPbl8c1_lOkJJW6KsVsAMdFvT-4PxVkMK7CuFXGeCi/pub?gid=0&single=true&output=csv')
+                        .then(response => response.text())
+                        .then(csv => {
+                            // Split CSV by line, skip header
+                            const lines = csv.trim().split('\n').slice(1);
+                            const ids = lines.map(line => line.split(',')[0].replace(/"/g, ''));
+                            if (ids.includes(userId)) {
+                                // User is allowed
+                                alert('Access granted!');
+                                // window.location.href = 'your-dashboard.html';
+                            } else {
+                                alert('You are NOT on the whitelist.');
+                                // window.location.href = 'access-denied.html';
+                            }
+                        })
+                        .catch(err => alert('Could not load whitelist.'));
+                }
             })
             .catch(error => console.error('Error during OAuth flow:', error));
     } else {
