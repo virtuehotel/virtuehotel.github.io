@@ -4,6 +4,7 @@ const redirectUri = 'https://virtuehotel.github.io/intra/index.html'; // Update 
 
 function saveUserDataToLocalStorage(userData) {
     localStorage.setItem('discordUserData', JSON.stringify(userData));
+    console.log('User data saved to localStorage:', userData); // Log saved data
 }
 
 // Parse the authorization code from the query parameters
@@ -41,7 +42,8 @@ if (code) {
         .then(userData => {
             // Save user data to localStorage
             saveUserDataToLocalStorage(userData);
-            console.log('User data saved:', userData); // Log the user data
+            // Redirect to dashboard
+            window.location.href = 'dashboard.html'; // Redirect to dashboard after successful login
         })
         .catch(error => console.error('Error fetching user data:', error));
     })
@@ -71,6 +73,6 @@ document.addEventListener('DOMContentLoaded', function () {
     } else {
         // If user data is not available, redirect to sign-in page
         console.warn('User data not found, redirecting to login.');
-        window.location.href = '../login.html';
+        window.location.href = './login.html';
     }
 });
