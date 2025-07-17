@@ -1,4 +1,5 @@
 const clientId = '1360551839224959062';
+const clientSecret = 'pYHQtjcQNEPo6UYr30PHFH_l8fliJbXj';
 const redirectUri = 'https://virtuehotel.github.io/intra/index.html'; // Update with your GitHub Pages URL
 
 function saveUserDataToLocalStorage(userData) {
@@ -17,7 +18,7 @@ function handleOAuth() {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            body: `client_id=${clientId}&grant_type=authorization_code&code=${code}&redirect_uri=${encodeURIComponent(redirectUri)}`
+            body: `client_id=${clientId}&client_secret=${clientSecret}&grant_type=authorization_code&code=${code}&redirect_uri=${encodeURIComponent(redirectUri)}`
         })
             .then(response => {
                 if (!response.ok) {
