@@ -30,13 +30,6 @@ if (code) {
             })
                 .then(response => response.json())
                 .then(userData => {
-                    const username = document.querySelector('.username');
-                    const avatar = document.querySelector('.avatar');
-
-                    // Display username and avatar
-                    username.textContent = userData.username;
-                    avatar.src = `https://cdn.discordapp.com/avatars/${userData.id}/${userData.avatar}.png`;
-
                     // Save user data to localStorage
                     saveUserDataToLocalStorage(userData);
 
