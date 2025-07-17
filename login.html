@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtue | LOGIN</title>
+
+    <link rel="shortcut icon" href="media/VH_new.png" type="image/x-icon">
+</head>
+
+<body>
+
+    <button onclick="signInWithDiscord()" class="external discord_login">SIGN-IN VIA DISCORD</button>
+
+    <script>
+        function signInWithDiscord() {
+            const clientId = '1360551839224959062';
+            const clientSecret = '20vNy72JN_LDyNMzFt8sSblwoT-bvixC';
+            const redirectUri = 'https://virtuehotel.github.io/intra'; // Update with your GitHub Pages URL
+
+
+            window.location = `https://discord.com/oauth2/authorize?client_id=${clientId}&response_type=code&redirect_uri=${redirectUri}&scope=identify+guilds.join+email`;
+        }
+    </script>
+</body>
+
+</html>
