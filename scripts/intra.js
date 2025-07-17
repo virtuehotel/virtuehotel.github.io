@@ -32,9 +32,6 @@ if (code) {
                 .then(userData => {
                     // Save user data to localStorage
                     saveUserDataToLocalStorage(userData);
-
-                    // Start the session timeout countdown
-                    startSessionTimeout();
                 })
                 .catch(error => console.error('Error fetching user data:', error));
         })
