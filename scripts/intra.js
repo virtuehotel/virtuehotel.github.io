@@ -19,56 +19,56 @@ if (code) {
         },
         body: `client_id=${clientId}&client_secret=${clientSecret}&grant_type=authorization_code&code=${code}&redirect_uri=${encodeURIComponent(redirectUri)}`
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Failed to exchange code for token');
-        }
-        return response.json();
-    })
-    .then(data => {
-        const accessToken = data.access_token;
-
-        // Fetch user data
-        fetch('https://discord.com/api/users/@me', {
-            headers: {
-                Authorization: `Bearer ${accessToken}`
-            }
-        })
         .then(response => {
             if (!response.ok) {
-                throw new Error('Failed to fetch user data');
+                throw new Error('Failed to exchange code for token');
             }
             return response.json();
         })
-        .then(userData => {
-            // Save user data to localStorage
-            saveUserDataToLocalStorage(userData);
+        .then(data => {
+            const accessToken = data.access_token;
 
-            // Fetch user roles in the guild
-            return fetch(`https://discord.com/api/guilds/${guildId}/members/${userData.id}`, {
+            // Fetch user data
+            fetch('https://discord.com/api/users/@me', {
                 headers: {
                     Authorization: `Bearer ${accessToken}`
                 }
-            });
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Failed to fetch guild member data');
-            }
-            return response.json();
-        })
-        .then(guildMemberData => {
-            // Add roles to user data
-            const userData = JSON.parse(localStorage.getItem('discordUserData'));
-            userData.roles = guildMemberData.roles || [];
-            saveUserDataToLocalStorage(userData);
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch user data: ' + response.statusText);
+                    }
+                    return response.json();
+                })
+                .then(userData => {
+                    // Save user data to localStorage
+                    saveUserDataToLocalStorage(userData);
 
-            // Redirect to dashboard
-            window.location.href = 'index.html';
+                    // Fetch user roles in the guild
+                    return fetch(`https://discord.com/api/guilds/${guildId}/members/${userData.id}`, {
+                        headers: {
+                            Authorization: `Bearer ${accessToken}`
+                        }
+                    });
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch guild member data: ' + response.statusText);
+                    }
+                    return response.json();
+                })
+                .then(guildMemberData => {
+                    // Add roles to user data
+                    const userData = JSON.parse(localStorage.getItem('discordUserData'));
+                    userData.roles = guildMemberData.roles || [];
+                    saveUserDataToLocalStorage(userData);
+
+                    // Redirect to dashboard
+                    window.location.href = 'index.html';
+                })
+                .catch(error => console.error('Error fetching user data:', error));
         })
-        .catch(error => console.error('Error fetching user data:', error));
-    })
-    .catch(error => console.error('Error exchanging code for token:', error));
+        .catch(error => console.error('Error exchanging code for token:', error));
 } else {
     console.warn('No authorization code found in URL');
 }
