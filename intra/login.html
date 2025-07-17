@@ -50,8 +50,6 @@
     <button onclick="signInWithDiscord()" class="external discord_login">SIGN-IN VIA DISCORD</button>
     <div class="warning" style="background-color: rgba(255, 66, 66, 0.4); color: aliceblue; display: none;"></div>
 
-    <script src="../scripts/intra.js"></script>
-
     <script lang="text/javascript">
         function signInWithDiscord() {
             const clientId = '1360551839224959062';
@@ -60,6 +58,8 @@
             window.location = `https://discord.com/oauth2/authorize?client_id=${clientId}&response_type=code&redirect_uri=${redirectUri}&scope=identify+guilds.join+email+guilds.members.read+guilds`;
         }
     </script>
+    
+    <script src="../scripts/intra.js"></script>
 </body>
 
 </html>
