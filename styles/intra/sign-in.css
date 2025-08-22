@@ -1,0 +1,649 @@
+@import url("https://use.typekit.net/snz0pma.css");
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+@keyframes fade-in {
+  0% {
+      opacity: 0;
+  }
+
+  100% {
+      opacity: 1;
+  }
+}
+
+* {
+  position: relative;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+html,
+body,
+table,
+select,
+input,
+textarea {
+  font-family: "Century Gothic", "Microsoft JhengHei", Verdana, Arial, Helvetica, sans-serif, 新細明體, 細明體_HKSCS, mingliu;
+  font-size: 16px;
+}
+
+table,
+select,
+input,
+textarea {
+  font-size: inherit;
+}
+
+table {
+  width: 100%;
+}
+
+html,
+body,
+div,
+ul,
+ol,
+li,
+dl,
+dt,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+form,
+p,
+blockquote,
+fieldset,
+input,
+hr {
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+code,
+address,
+caption,
+cite,
+code,
+em,
+strong,
+th {
+  font-style: normal;
+}
+
+li {
+  list-style-position: outside;
+}
+
+fieldset,
+img,
+hr {
+  border: none;
+}
+
+caption,
+th {
+  text-align: left;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+td {
+  vertical-align: top;
+}
+
+div {
+  display: block;
+}
+
+span {
+  display: inline-block;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a:focus,
+a:hover {
+  text-decoration: none;
+}
+
+select {
+  border: 1px solid rgb(204, 204, 204);
+}
+
+p.spacer {
+  line-height: 0px;
+  clear: both;
+  display: block;
+  padding: 0px;
+  margin: 0px;
+  height: 0px;
+}
+
+input[type="button"]:focus {
+  outline: none;
+}
+
+img {
+  max-width: 100%;
+  display: inline-block;
+}
+
+video {
+  max-width: 100%;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: none;
+  -webkit-text-fill-color: rgb(51, 51, 51);
+  -webkit-box-shadow: 0 0 0px 1000px rgb(213, 235, 243) inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+#ploginWrapper {
+  height: 100%;
+}
+
+#ploginWrapper a:not(.button):not([class^="button-"]):not([class^="btn-"]) {
+  cursor: pointer;
+  -webkit-transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+
+#ploginWrapper a:not(.button):not([class^="button-"]):not([class^="btn-"]):not(:disabled):not(.disabled):hover {
+  -webkit-filter: brightness(1.2) contrast(0.9);
+  filter: brightness(1.2) contrast(0.9);
+}
+
+#blkLogin,
+#blkPhoto {
+  padding: 0;
+}
+
+#blkPhoto {
+  animation: fade-in 2s;
+  background-color: rgb(238, 238, 238);
+  background-size: cover;
+  background-position: 50% 50%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+}
+
+@media (min-width: 769px) {
+  #blkPhoto {
+    width: 67%;
+    min-width: calc(100% - 700px);
+    max-width: calc(100% - 450px);
+  }
+}
+
+@media (max-width: 768px) {
+  #blkPhoto {
+    width: 100%;
+  }
+}
+
+#blkLogin {
+  box-shadow: 0px -15px 15px 0px rgba(0, 0, 0, 0);
+  background: white;
+  border-radius: 0 0 0 0;
+  -moz-border-radius: 0 0 0 0;
+  -webkit-border-radius: 0 0 0 0;
+  overflow: hidden;
+  float: right;
+  height: 100vh;
+  display: table;
+}
+
+@media (min-width: 769px) {
+  #blkLogin {
+    width: 33%;
+    min-width: 450px;
+    max-width: 700px;
+  }
+}
+
+@media (max-width: 768px) {
+  #blkLogin {
+    width: 95%;
+    background: rgba(255, 255, 255, 0.98);
+  }
+}
+
+#blkFormWrapper {
+  display: table-cell;
+  vertical-align: middle;
+  background: linear-gradient(360deg, #04f2ee, #0bc0b0);
+}
+
+#blkForm {
+  width: 95%;
+  max-width: 650px;
+  padding: 50px 30px 30px 30px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#blkForm .textbox input {
+  width: 100%;
+}
+
+#blkForm #lbleClass {
+  font-size: 0.75em;
+  color: rgb(51, 51, 51);
+  margin: 90px 0 25px;
+  text-align: right;
+  clear: both;
+}
+
+#blkForm #lbleClass span,
+#blkForm #lbleClass img {
+  vertical-align: top;
+}
+
+#blkForm #lbleClass img {
+  height: 18px;
+}
+
+@media (max-width: 480px) {
+  #blkForm {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  #footer {
+    right: 15px !important;
+  }
+}
+
+#blkLogo {
+  font-weight: bold;
+  font-weight: 600;
+  margin-bottom: 1em;
+  text-align: center;
+}
+
+#blkLogo>img {
+  max-width: 60%;
+  max-height: 150px;
+  margin-bottom: 30px;
+}
+
+@media (min-width: 769px) {
+  #blkLogo+.h4.mb-5 {
+    margin-bottom: 70px !important;
+  }
+}
+
+#btnForgotPw {
+  font-size: 14px;
+}
+
+#btnLogin {
+  float: right;
+}
+
+@media (min-width: 769px) {
+  #btnLogin {
+    margin-bottom: 90px;
+  }
+}
+
+@media (max-width: 480px) {
+  #btnLogin {
+    width: 100%;
+    float: none;
+    margin-top: 20px;
+  }
+}
+
+#login_title {
+  display: table;
+  font-size: 22px;
+  color: rgb(51, 51, 51);
+  margin-bottom: 40px;
+}
+
+#login_title span.title_logo {
+  width: 120px;
+  text-align: center;
+  vertical-align: top;
+  display: table-cell;
+}
+
+#login_title span.title_logo img {
+  height: auto;
+  width: auto;
+  max-width: 120px;
+  max-height: 80px;
+  vertical-align: top;
+  margin-right: 5px;
+}
+
+#login_title span.title_text {
+  vertical-align: middle;
+  width: calc(100% - 120px);
+  display: table-cell;
+  font-family: "fira-sans", sans-serif;
+}
+
+#login_title span.subtitle_text {
+  vertical-align: middle;
+  width: calc(100% - 120px);
+  display: table-cell;
+  font-size: 18px;
+  font-family: "fira-sans", sans-serif;
+}
+
+.login_form {
+  display: block;
+  width: 100%;
+  padding-bottom: 39px;
+}
+
+.login_form span,
+.login_form input,
+.login_form a {
+  font-family: "Century Gothic", "Microsoft JhengHei", Verdana, Arial, Helvetica, sans-serif, 新細明體, 細明體_HKSCS, mingliu;
+  display: block;
+}
+
+span.text_login {
+  width: 100px;
+  left: 45px;
+  top: 40px;
+  position: absolute;
+  z-index: 2;
+}
+
+span.text_password {
+  width: 100px;
+  left: 35px;
+  top: 67px;
+}
+
+span.text_other {
+  left: 35px;
+  width: 270px;
+  top: 132px;
+  height: 30px;
+  font-weight: bold
+}
+
+.password {
+  display: flex;
+}
+
+.login_form input.user_loginname, 
+.login_form input.user_password {
+  width: 100%;
+  padding: 6px 10px;
+  color: rgb(43, 125, 167);
+  background: rgb(243, 237, 237);
+  border: none;
+  font-size: 18px;
+  margin-bottom: 20px;
+  transition: .5s;
+}
+
+.login_form input.user_password:focus,
+.login_form input.user_loginname:focus {
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 8px rgba(0, 0, 0, 0.1);
+  background-color: rgba(243, 237, 237, 0.5);
+  outline: none !important;
+}
+
+.login_form ::-webkit-input-placeholder {
+  color: rgb(34, 155, 204);
+  line-height: 30px;
+}
+
+/*20200825*/
+.login_form input::-moz-placeholder {
+  color: rgb(34, 155, 204);
+  line-height: 30px;
+}
+
+/*20200825*/
+.login_form input::placeholder {
+  color: rgb(34, 155, 204);
+  line-height: 30px !important;
+}
+
+/*20200825*/
+.login_form:-ms-input-placeholder {
+  color: rgb(34, 155, 204);
+  line-height: 30px;
+}
+
+/*20200825*/
+
+.login_form .login_btn {
+  position: absolute;
+  right: 0px;
+  border: 0;
+  color: rgb(255, 255, 255);
+  padding: 8px 30px 10px 30px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  background: rgb(34, 155, 204);
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.login_form .login_btn:hover {
+  background: rgb(69, 188, 224);
+}
+
+span#loading {
+  left: 380px;
+  top: 112px;
+}
+
+a.forgot_password {
+  width: 120px;
+  font-size: 13px;
+  height: 20px;
+  left: 0px;
+  top: 15px;
+  color: rgb(30, 103, 132) !important;
+  text-decoration: none;
+  position: relative;
+  margin-bottom: 50px;
+}
+
+a.forgot_password:hover {
+  color: rgb(61, 98, 109) !important;
+}
+
+.error_msg {
+  clear: both;
+  border: none;
+  background: none;
+  padding-top: 15px;
+  font-size: 13px;
+  font-weight: 400;
+  color: rgb(235, 17, 17);
+  position: relative;
+}
+
+div.Go_link {
+  display: block;
+  position: absolute;
+  right: 23px;
+  height: 25px;
+  width: 172px;
+  top: 61px;
+  text-align: right;
+}
+
+div.Go_link a {
+  font-size: 11px;
+  color: rgb(0, 51, 153);
+}
+
+div.Go_link a:hover {
+  color: rgb(255, 0, 0);
+}
+
+#footer {
+  position: absolute;
+  right: 40px;
+  bottom: 40px;
+}
+
+/*20200825*/
+
+#footer a {
+  color: rgb(255, 255, 255)
+}
+
+#footer a:hover {
+  text-decoration: underline
+}
+
+.support_info {
+  color: rgb(0, 0, 0);
+  font-size: 0.9em;
+  right: 15px;
+  bottom: 25px;
+  height: 23px;
+  text-align: right;
+}
+
+.support_info a {
+  color: rgb(0, 51, 153);
+  text-decoration: none;
+}
+
+.support_info a:hover {
+  text-decoration: underline
+}
+
+.done_msg {
+  clear: both;
+  border: none;
+  background: none;
+  padding-top: 15px;
+  font-size: 13px;
+  font-weight: 400;
+  color: rgb(6, 151, 16);
+}
+
+.login-seperate {
+  height: 30px;
+  width: 100%;
+  margin-top: 50px;
+}
+
+.login-seperate .line {
+  width: 45%;
+  height: 50%;
+  border-bottom: 1px rgb(204, 204, 204) solid;
+  display: inline-block;
+  padding: 0px;
+}
+
+.login-seperate .line:last-child {
+  float: right;
+}
+
+.login-seperate .line:first-child {
+  float: left;
+}
+
+.login-seperate .text {
+  font-size: 14px;
+  color: rgb(102, 102, 102);
+  font-weight: bold;
+  display: inline-block;
+  padding: 0px;
+  text-align: center;
+  width: 10%;
+  line-height: 30px;
+}
+
+.login_form .external {
+  display: block;
+  border: 0;
+  color: #fff !important;
+  margin-top: 30px;
+  padding: 8px 30px 10px 30px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  line-height: 26px;
+}
+
+.discord_login {
+  background: #3b82ff;
+}
+
+.roblox_login {
+  background: #ff1b1b;
+}
+
+.discord_login:hover {
+  background: #0f62fe; /* High contrast with non-hover color */
+}
+
+.roblox_login:hover {
+  background: #d90000; /* High contrast with non-hover color */
+}
+
+.login_form .external img{
+  vertical-align: top;
+  margin-right: 5px;
+}
+
+.warning {
+  color: #856404;
+  background-color: #fff3cd;
+  border-color: #ffeeba;
+  position: relative;
+  padding: 0.75rem 1.25rem;
+  margin-top: 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+}

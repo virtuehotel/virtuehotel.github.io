@@ -1,0 +1,145 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+}
+
+.carousel {
+    position: fixed;
+    overflow: hidden;
+    height: 100vh;
+    width: 100%;
+}
+
+.banner video {
+    position: relative;
+    min-width: 100%;
+    min-height: 100vh;
+}
+
+.banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+}
+
+.language {
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 99;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.language span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background-color: rgba(167, 146, 146, 0.5);
+    margin: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.language .current {
+    background-color: rgba(33, 136, 215, 0.6);
+    color: white;
+}
+
+.carousel-track {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    top: 0;
+    left: 0;
+}
+
+.carousel-item {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.slide-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    height: 70%;
+    user-select: none;
+    text-align: left;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    letter-spacing: 10px;
+}
+
+.no_spacing {
+    letter-spacing: normal;
+}
+
+.text_heading {
+    font-size: 60px;
+    font-weight: bold;
+    margin: 0;
+    line-height: 1.2;
+    color: #333333;
+}
+
+.text_subheading {
+    font-size: 32px;
+    color: #c9bdbd;
+    line-height: 1;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.text_content {
+    line-height: 1.5;
+    font-size: 18px;
+    color: #ffffff;
+    margin-top: 20px;
+}
+
+.text_content p {
+    margin: 0;
+}
+
+.webadmin a {
+    transition: 0.2s;
+    text-decoration: none;
+    color: #38fab6;
+}
+
+.webadmin a:hover {
+    color: #f0f8ff;
+}
+
+.do_not_refresh {
+    color: #acff28;
+}
+
+.sorry {
+    /* font-size: 24px; */
+    color: #00ffc8;
+}
