@@ -111,33 +111,38 @@
 
             const username = document.getElementById("name").value;
             const reason = document.getElementById("reason").value;
+
             // Get the leave and return dates from the input
-            const leaveDateInput = document.getElementById("leave-date").value;
-            const returnDateInput = document.getElementById("return-date").value;
+            const leaveDateInput = document.getElementById("leave-date").value; // e.g., "2025-11-05"
+            const returnDateInput = document.getElementById("return-date").value; // e.g., "2025-11-10"
 
-            // Create date objects with default times
-            const DoL = new Date(`${leaveDateInput}T00:00:00-05:00`); // 00:00 AM EST
-            const DoR = new Date(`${returnDateInput}T23:59:00-05:00`); // 23:59 PM EST
+            // Create Date objects in the user's local timezone
+            const DoL = new Date(`${leaveDateInput}T00:00:00`); // Start of the day in local time
+            const DoR = new Date(`${returnDateInput}T23:59:00`); // End of the day in local time
 
-            // Convert to Unix timestamps
+            // Convert to Unix timestamps (in local timezone)
             const DoL_timestamp = Math.floor(DoL.getTime() / 1000); // Leave date as timestamp
             const DoR_timestamp = Math.floor(DoR.getTime() / 1000); // Return date as timestamp
 
-            // Get the client's timezone
+            // Get the client's timezone for request time
             const clientTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-            const localOptions = {
-                timeZone: clientTimezone,
-                year: 'numeric',
-                month: 'short',
-                day: '2-digit',
-                hour: '2-digit',
-                minute: '2-digit',
-                second: '2-digit',
-                hour12: false // Use 24-hour format
-            };
 
-            // Format submission time for local time with timezone
-            const requestDate = new Date().toLocaleString('en-US', localOptions); // Local time of submission
+            // Get the current time in the client's local timezone
+            const now = new Date();
+            const currentTime = now.toLocaleString('en-US', { timeZone: clientTimezone });
+
+            // Get the request time in the client's local timezone as a timestamp
+            const requestDate = Math.floor(Date.now() / 1000); // Current time as a timestamp
+
+            // Calculate the offset in hours between the client's timezone and New York timezone
+            const nyTimezone = 'America/New_York';
+            const clientOffset = now.getTimezoneOffset() * -1; // Client's offset in minutes
+            const nyOffset = (new Date().toLocaleString("en-US", { timeZone: nyTimezone })).getTimezoneOffset() * -1; // New York's offset in minutes
+            const offsetHours = (clientOffset - nyOffset) / 60; // Difference in hours
+
+            // Determine if ahead or behind
+            const direction = offsetHours >= 0 ? "ahead" : "behind";
+            const absOffsetHours = Math.abs(offsetHours);
 
             // Replace with your actual Discord webhook URL
             const webhookURL = "https://discord.com/api/webhooks/1394512933261807718/pqHYGWT7qeexYTA4rgVxfdx-nwZXWP5Qe470WcLOm_OSrV5IIWFHUWwPBw3bq4v9YtXm";
@@ -152,8 +157,8 @@
                         fields: [
                             {
                                 name: "Staff Member",
-                                value: `${username}`,
-                                inline: true
+                                value: `> ${username}`,
+                                inline: false
                             },
                             {
                                 name: "Leave From (Local Time)",
@@ -171,13 +176,13 @@
                                 inline: false
                             },
                             {
-                                name: `Request Time (${clientTimezone})`,
-                                value: `${requestDate}`, // Local time of submission with timezone
+                                name: "Request Time",
+                                value: `> <t:${requestDate}:f>\n> - The time now of the staff member is ${currentTime} (${clientTimezone}), which is ${absOffsetHours} hour(s) ${direction} of New York Time.`, // Combined field
                                 inline: false
                             },
                         ],
                         footer: {
-                            text: "Please maintain confidentiality regarding this request."
+                            text: "Please maintain confidentiality regarding this request and contact the staff members in a suitable time."
                         },
                         timestamp: new Date().toISOString(),
                     },
