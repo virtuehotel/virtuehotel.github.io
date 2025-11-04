@@ -154,33 +154,25 @@
 
             // Get the current time in the client's local timezone
             const now = new Date();
-            const currentTime = now.toLocaleString('en-US', {
-                timeZone: clientTimezone,
+
+            // Format the current time in specified format
+            const options = {
                 year: 'numeric',
-                month: '2-digit',
+                month: 'short', // or 'short' for abbreviated month
                 day: '2-digit',
                 hour: '2-digit',
                 minute: '2-digit',
                 second: '2-digit',
-                hour12: false,
-            });
+                hour12: false, // Use 24-hour format
+                timeZone: clientTimezone
+            };
+
+            const formattedCurrentTime = now.toLocaleString('en-US', options)
+                .replace(',', '') // Remove the comma between date and time
+                .replace(/(\d{1,2}) (\w+)/, '$1 $2'); // Ensure spacing is correct
 
             // Get the request time in the client's local timezone as a timestamp
             const requestDate = Math.floor(Date.now() / 1000); // Current time as a timestamp
-
-            // Calculate the offset in hours between the client's timezone and New York timezone
-            const nyTimezone = 'America/New_York';
-            const clientOffset = now.getTimezoneOffset() * -1; // Client's offset in minutes
-
-            // Create a Date object for New York and get its offset
-            const nyDate = new Date(new Date().toLocaleString("en-US", { timeZone: nyTimezone }));
-            const nyOffset = nyDate.getTimezoneOffset() * -1; // New York's offset in minutes
-
-            const offsetHours = (clientOffset - nyOffset) / 60; // Difference in hours
-
-            // Determine if ahead or behind
-            const direction = offsetHours >= 0 ? "ahead" : "behind";
-            const absOffsetHours = Math.abs(offsetHours);
 
             // Replace with your actual Discord webhook URL
             const webhookURL = "https://discord.com/api/webhooks/1394512933261807718/pqHYGWT7qeexYTA4rgVxfdx-nwZXWP5Qe470WcLOm_OSrV5IIWFHUWwPBw3bq4v9YtXm";
@@ -214,8 +206,8 @@
                                 inline: false
                             },
                             {
-                                name: "Request Time",
-                                value: `> <t:${requestDate}:f>\n> -# The time now of the staff member is ${currentTime} (${clientTimezone}), which is ${absOffsetHours} hour(s) ${direction} of New York Time.`, // Combined field
+                                name: `Current Time of Staff (${clientTimezone})`,
+                                value: `> ${formattedCurrentTime}\n> -# Please contact them during appropriate hours.`,
                                 inline: false
                             },
                         ],
