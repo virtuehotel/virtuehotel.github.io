@@ -7,7 +7,8 @@
     <meta name="author" content="Virtue Hotel Roblox">
     <meta name="copyright" content="Virtue Hotel">
     <meta property="title" content="LOA | VH Management">
-    <meta name="description" content="Welcome to Virtue Hotel, a Roblox Virtual Hotel community, dedicated to provide our guests an amazing experience with our Aesthetics, Design, and exceptional staff.">
+    <meta name="description"
+        content="Welcome to Virtue Hotel, a Roblox Virtual Hotel community, dedicated to provide our guests an amazing experience with our Aesthetics, Design, and exceptional staff.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#67b0ff">
     <meta name="image" content="https://virtuehotel.github.io/media/logo.png">
@@ -20,7 +21,8 @@
     <meta property="og:title" content="LOA | VH Management">
     <meta property="og:image" content="https://virtuehotel.github.io/media/logo.png">
     <!-- <meta property="og:image" content="https://virtuehotel.github.io/media/banner.png"> -->
-    <meta property="og:description" content="Welcome to Virtue Hotel, a Roblox Virtual Hotel community, dedicated to provide our guests an amazing experience with our Aesthetics, Design, and exceptional staff.">
+    <meta property="og:description"
+        content="Welcome to Virtue Hotel, a Roblox Virtual Hotel community, dedicated to provide our guests an amazing experience with our Aesthetics, Design, and exceptional staff.">
     <meta property="og:title" content="Virtue Hotel Management Utility">
     <meta property="og:type" content="website">
 
@@ -38,7 +40,7 @@
 
         body {
             font-family: 'Segoe UI', sans-serif;
-            background-color: #f4f4f4;
+            background-color: #2ad8ff;
             margin: 0;
             padding: 0;
             display: flex;
@@ -128,7 +130,7 @@
         <p id="response" style="color: green;"></p>
     </div>
 
-        <section class="site_footer">
+    <section class="site_footer">
         <footer>
             <div class="footer_row">
                 ©️ 2025 VIRTUE HOTEL, ALL RIGHTS RESERVED
@@ -170,7 +172,11 @@
             // Calculate the offset in hours between the client's timezone and New York timezone
             const nyTimezone = 'America/New_York';
             const clientOffset = now.getTimezoneOffset() * -1; // Client's offset in minutes
-            const nyOffset = (new Date().toLocaleString("en-US", { timeZone: nyTimezone })).getTimezoneOffset() * -1; // New York's offset in minutes
+
+            // Create a Date object for New York and get its offset
+            const nyDate = new Date().toLocaleString("en-US", { timeZone: nyTimezone });
+            const nyOffset = new Date(nyDate).getTimezoneOffset() * -1; // New York's offset in minutes
+
             const offsetHours = (clientOffset - nyOffset) / 60; // Difference in hours
 
             // Determine if ahead or behind
@@ -210,12 +216,12 @@
                             },
                             {
                                 name: "Request Time",
-                                value: `> <t:${requestDate}:f>\n> - The time now of the staff member is ${currentTime} (${clientTimezone}), which is ${absOffsetHours} hour(s) ${direction} of New York Time.`, // Combined field
+                                value: `> <t:${requestDate}:f>\n> - The time now of the timezone is ${currentTime} (${clientTimezone}), which is ${absOffsetHours} hour(s) ${direction} of New York Time.`, // Combined field
                                 inline: false
                             },
                         ],
                         footer: {
-                            text: "Please maintain confidentiality regarding this request and contact the staff members in a suitable time."
+                            text: "Please maintain confidentiality regarding this request."
                         },
                         timestamp: new Date().toISOString(),
                     },
