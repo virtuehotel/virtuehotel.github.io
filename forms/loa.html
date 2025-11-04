@@ -127,22 +127,22 @@
                         fields: [
                             {
                                 name: "Staff Member",
-                                value: username,
+                                value: `${username}`,
                                 inline: true
                             },
                             {
                                 name: "Leave From",
-                                value: `<t:${Math.floor(DoL)}:f>`, // Discord timestamp format
+                                value: `> <t:${Math.floor(DoL)}:f>`, // Discord timestamp format
                                 inline: true
                             },
                             {
                                 name: "Return By",
-                                value: `<t:${Math.floor(DoR)}:f>`, // Discord timestamp format
+                                value: `> <t:${Math.floor(DoR)}:f>`, // Discord timestamp format
                                 inline: true
                             },
                             {
                                 name: "Reason for Leave",
-                                value: reason,
+                                value: `> ${reason}`,
                                 inline: false
                             },
                         ],
