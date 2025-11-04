@@ -106,15 +106,12 @@
     <!-- <script src="../scripts/intra.js"></script> -->
 
     <script>
-        // const userData = JSON.parse(localStorage.getItem('discordUserData'));
-        // document.getElementById("name").value = userData.username
-
         document.getElementById("leaveForm").addEventListener("submit", function (e) {
             e.preventDefault();
 
             const username = document.getElementById("name").value;
-            const DoL = document.getElementById("leave-date").value;
-            const DoR = document.getElementById("return-date").value;
+            const DoL = new Date(document.getElementById("leave-date").value).getTime() / 1000; // Convert to seconds
+            const DoR = new Date(document.getElementById("return-date").value).getTime() / 1000; // Convert to seconds
             const reason = document.getElementById("reason").value;
 
             // Replace with your actual Discord webhook URL
@@ -125,29 +122,34 @@
                 embeds: [
                     {
                         title: "Leave of Absence Request",
-                        description: "Greetings, Staffing Department!\n\nWe have received an incoming Leave of Absence Request from our Management Portal. Please refer to the details below and inform the staff regarding their status.\n\n> -# To protect personal privacy, please only discuss the LoA within your team and do not leak any information in any public occasion",
-                        color: 2326507,
+                        description: "A new Leave of Absence Request has been submitted. Please review the details below:",
+                        color: 3447003,
                         fields: [
                             {
                                 name: "Staff Member",
-                                value: "> " + username
-                            },
-                            {
-                                name: "From Date",
-                                value: "> " + DoL + " at 00:00 EST",
+                                value: username,
                                 inline: true
                             },
                             {
-                                name: "To Date",
-                                value: "> " + DoR + " at 23:59 EST",
+                                name: "Leave From",
+                                value: `<t:${Math.floor(DoL)}:f>`, // Discord timestamp format
                                 inline: true
                             },
                             {
-                                name: "Reason",
-                                value: "> " + reason,
+                                name: "Return By",
+                                value: `<t:${Math.floor(DoR)}:f>`, // Discord timestamp format
+                                inline: true
+                            },
+                            {
+                                name: "Reason for Leave",
+                                value: reason,
                                 inline: false
                             },
-                        ]
+                        ],
+                        footer: {
+                            text: "Please maintain confidentiality regarding this request."
+                        },
+                        timestamp: new Date().toISOString(),
                     },
                 ]
             };
@@ -161,14 +163,14 @@
             })
                 .then(res => {
                     if (res.ok) {
-                        document.getElementById("response").textContent = "✅ Message sent to Discord!";
+                        document.getElementById("response").textContent = "✅ Your request has been successfully submitted!";
                     } else {
-                        document.getElementById("response").textContent = "❌ Failed to send message.";
+                        document.getElementById("response").textContent = "❌ There was an issue sending your request. Please try again.";
                     }
                 })
                 .catch(err => {
                     console.error(err);
-                    document.getElementById("response").textContent = "❌ Error occurred.";
+                    document.getElementById("response").textContent = "❌ An error occurred. Please check your connection and try again.";
                 });
         });
     </script>
