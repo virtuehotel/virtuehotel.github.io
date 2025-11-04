@@ -114,6 +114,22 @@
             const DoR = new Date(document.getElementById("return-date").value).getTime() / 1000; // Convert to seconds
             const reason = document.getElementById("reason").value;
 
+            // Get the client's timezone
+            const clientTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+            const localOptions = {
+                timeZone: clientTimezone,
+                year: 'numeric',
+                month: 'short',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false // Use 24-hour format
+            };
+
+            // Format submission time for local time with timezone
+            const requestDate = new Date().toLocaleString('en-US', localOptions); // Local time of submission
+
             // Replace with your actual Discord webhook URL
             const webhookURL = "https://discord.com/api/webhooks/1394512933261807718/pqHYGWT7qeexYTA4rgVxfdx-nwZXWP5Qe470WcLOm_OSrV5IIWFHUWwPBw3bq4v9YtXm";
 
@@ -131,18 +147,23 @@
                                 inline: true
                             },
                             {
-                                name: "Leave From",
-                                value: `> <t:${Math.floor(DoL)}:f>`, // Discord timestamp format
+                                name: "Leave From (Local Time)",
+                                value: `> <t:${Math.floor(DoL)}:f> (<t:${Math.floor(DoL)}:R>)`, // Discord timestamp format
                                 inline: true
                             },
                             {
-                                name: "Return By",
-                                value: `> <t:${Math.floor(DoR)}:f>`, // Discord timestamp format
+                                name: "Return By (Local Time)",
+                                value: `> <t:${Math.floor(DoR)}:f> (<t:${Math.floor(DoL)}:R>)`, // Discord timestamp format
                                 inline: true
                             },
                             {
                                 name: "Reason for Leave",
                                 value: `> ${reason}`,
+                                inline: false
+                            },
+                            {
+                                name: `Request Time (${clientTimezone})`,
+                                value: `${requestDate}`, // Local time of submission with timezone
                                 inline: false
                             },
                         ],
