@@ -110,9 +110,18 @@
             e.preventDefault();
 
             const username = document.getElementById("name").value;
-            const DoL = new Date(document.getElementById("leave-date").value).getTime() / 1000; // Convert to seconds
-            const DoR = new Date(document.getElementById("return-date").value).getTime() / 1000; // Convert to seconds
             const reason = document.getElementById("reason").value;
+            // Get the leave and return dates from the input
+            const leaveDateInput = document.getElementById("leave-date").value;
+            const returnDateInput = document.getElementById("return-date").value;
+
+            // Create date objects with default times
+            const DoL = new Date(`${leaveDateInput}T00:00:00-05:00`); // 00:00 AM EST
+            const DoR = new Date(`${returnDateInput}T23:59:00-05:00`); // 23:59 PM EST
+
+            // Convert to Unix timestamps
+            const DoL_timestamp = Math.floor(DoL.getTime() / 1000); // Leave date as timestamp
+            const DoR_timestamp = Math.floor(DoR.getTime() / 1000); // Return date as timestamp
 
             // Get the client's timezone
             const clientTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -148,12 +157,12 @@
                             },
                             {
                                 name: "Leave From (Local Time)",
-                                value: `> <t:${Math.floor(DoL)}:f> (<t:${Math.floor(DoL)}:R>)`, // Discord timestamp format
+                                value: `> <t:${DoL_timestamp}:f> (<t:${DoL_timestamp}:R>)`, // Discord timestamp format
                                 inline: true
                             },
                             {
                                 name: "Return By (Local Time)",
-                                value: `> <t:${Math.floor(DoR)}:f> (<t:${Math.floor(DoL)}:R>)`, // Discord timestamp format
+                                value: `> <t:${DoR_timestamp}:f> (<t:${DoR_timestamp}:R>)`, // Discord timestamp format
                                 inline: true
                             },
                             {
