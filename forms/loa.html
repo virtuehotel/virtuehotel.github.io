@@ -130,16 +130,6 @@
         <p id="response" style="color: green;"></p>
     </div>
 
-    <!-- <section class="site_footer">
-        <footer>
-            <div class="footer_row">
-                ©️ 2025 VIRTUE HOTEL, ALL RIGHTS RESERVED
-            </div>
-        </footer>
-    </section> -->
-
-    <!-- <script src="../scripts/intra.js"></script> -->
-
     <script>
         document.getElementById("leaveForm").addEventListener("submit", function (e) {
             e.preventDefault();
@@ -164,7 +154,16 @@
 
             // Get the current time in the client's local timezone
             const now = new Date();
-            const currentTime = now.toLocaleString('en-US', { timeZone: clientTimezone });
+            const currentTime = now.toLocaleString('en-US', {
+                timeZone: clientTimezone,
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false,
+            });
 
             // Get the request time in the client's local timezone as a timestamp
             const requestDate = Math.floor(Date.now() / 1000); // Current time as a timestamp
@@ -174,8 +173,8 @@
             const clientOffset = now.getTimezoneOffset() * -1; // Client's offset in minutes
 
             // Create a Date object for New York and get its offset
-            const nyDate = new Date().toLocaleString("en-US", { timeZone: nyTimezone });
-            const nyOffset = new Date(nyDate).getTimezoneOffset() * -1; // New York's offset in minutes
+            const nyDate = new Date(new Date().toLocaleString("en-US", { timeZone: nyTimezone }));
+            const nyOffset = nyDate.getTimezoneOffset() * -1; // New York's offset in minutes
 
             const offsetHours = (clientOffset - nyOffset) / 60; // Difference in hours
 
@@ -216,7 +215,7 @@
                             },
                             {
                                 name: "Request Time",
-                                value: `> <t:${requestDate}:f>\n> - The time now of the timezone is ${currentTime} (${clientTimezone}), which is ${absOffsetHours} hour(s) ${direction} of New York Time.`, // Combined field
+                                value: `> <t:${requestDate}:f>\n> -# The time now of the staff member is ${currentTime} (${clientTimezone}), which is ${absOffsetHours} hour(s) ${direction} of New York Time.`, // Combined field
                                 inline: false
                             },
                         ],
