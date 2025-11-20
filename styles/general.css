@@ -791,6 +791,11 @@ section.welcome_banner {
     margin: 0 5px;
 }
 
+.section {
+    padding: 0 15px;
+    margin-bottom: 5px;
+}
+
 .site_footer {
     /* position: absolute; */
     /* bottom: 0; */
